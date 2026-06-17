@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.weilerkimo.com/sitemap.xml
