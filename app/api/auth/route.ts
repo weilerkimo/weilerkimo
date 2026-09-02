@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { TOTP } from "otplib";
-
-const totp = new TOTP();
+import speakeasy from "speakeasy";
 
 export async function POST(req: NextRequest) {
   const { code } = await req.json();
@@ -10,8 +8,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const secret = process.env.TOTP_SECRET!;
-  const valid = await totp.verify(code.replace(/\s/g, ""), { secret });
+  const valid = speakeasy.totp.verify({
+    secret: process.env.TOTP_SECRET!,
+    encoding: "base32",
+    token: code.replace(/\s/g, ""),
+    window: 1,
+  });
 
   if (!valid) {
     return NextResponse.json({ error: "Invalid code" }, { status: 401 });
