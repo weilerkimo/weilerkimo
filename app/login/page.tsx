@@ -11,6 +11,7 @@ function LoginForm() {
   const params = useSearchParams();
   const next = params.get("next") || "/dashboard";
 
+
   async function submit(code: string) {
     setLoading(true);
     setError(false);

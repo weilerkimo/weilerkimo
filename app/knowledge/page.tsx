@@ -1,45 +1,34 @@
 export default function KnowledgePage() {
+  const categories = [
+    { label: "Business", description: "Geschäftsmodelle, WK Capital, Strategie", href: "/knowledge/business" },
+    { label: "Finance", description: "Märkte, Konzepte, Makro", href: "/knowledge/finance" },
+    { label: "Investments", description: "Strategien, Watchlists, Thesen", href: "/knowledge/investments" },
+    { label: "Math / ML", description: "Quant, Statistik, Neural Nets", href: "/knowledge/math-ml" },
+    { label: "Grafik", description: "Lehre, Typografie, Design-Theorie", href: "/knowledge/grafik" },
+    { label: "Python", description: "Code, Scripts, CS50P", href: "/knowledge/python" },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#F2F0EB] p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="max-w-3xl mx-auto px-8 py-16">
+      <div className="mb-12">
+        <p className="text-xs text-black/40 uppercase tracking-widest mb-3">Knowledge Base</p>
+        <h1 className="text-3xl font-semibold">Wissensnetzwerk</h1>
+      </div>
 
-        <div className="flex items-center justify-between mb-16">
-          <div>
-            <p className="text-[10px] tracking-[0.2em] uppercase text-black/40 font-[family-name:var(--font-mono)] mb-1">
-              Private
-            </p>
-            <h1 className="text-2xl font-bold tracking-tight">Knowledge Base</h1>
-          </div>
+      <div className="space-y-1">
+        {categories.map((cat) => (
           <a
-            href="/"
-            className="text-[10px] tracking-[0.2em] uppercase text-black/40 font-[family-name:var(--font-mono)] hover:text-black transition-colors"
+            key={cat.label}
+            href={cat.href}
+            className="flex items-center justify-between py-4 px-5 rounded-lg hover:bg-black/[0.03] transition-colors group"
           >
-            ← Home
+            <div>
+              <p className="font-medium text-[#0a0a0a] mb-0.5">{cat.label}</p>
+              <p className="text-sm text-black/40">{cat.description}</p>
+            </div>
+            <span className="text-black/20 group-hover:text-black/50 transition-colors text-lg">→</span>
           </a>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {[
-            { label: "Business", count: 0, href: "/knowledge/business" },
-            { label: "Finance", count: 0, href: "/knowledge/finance" },
-            { label: "Investments", count: 0, href: "/knowledge/investments" },
-            { label: "Math / ML", count: 0, href: "/knowledge/math-ml" },
-            { label: "Grafik", count: 0, href: "/knowledge/grafik" },
-            { label: "Python", count: 0, href: "/knowledge/python" },
-          ].map((cat) => (
-            <a
-              key={cat.label}
-              href={cat.href}
-              className="flex items-center justify-between p-5 border border-black/10 rounded-lg hover:border-black/30 hover:bg-black/[0.02] transition-all"
-            >
-              <span className="text-sm font-medium">{cat.label}</span>
-              <span className="text-[10px] tracking-[0.15em] uppercase text-black/30 font-[family-name:var(--font-mono)]">
-                {cat.count} Nodes
-              </span>
-            </a>
-          ))}
-        </div>
-
+        ))}
       </div>
     </div>
   );
