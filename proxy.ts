@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const PRIVATE_ROUTES = ["/knowledge", "/dashboard"];
 const ACCESS_COOKIE = "wk-access";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isPrivate = PRIVATE_ROUTES.some((route) => pathname.startsWith(route));

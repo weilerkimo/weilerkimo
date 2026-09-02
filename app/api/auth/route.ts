@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   const secret = process.env.TOTP_SECRET!;
-  const valid = totp.verify({ token: code.replace(/\s/g, ""), secret });
+  const valid = await totp.verify(code.replace(/\s/g, ""), { secret });
 
   if (!valid) {
     return NextResponse.json({ error: "Invalid code" }, { status: 401 });
