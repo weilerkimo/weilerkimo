@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# QV 27 Projekt-Arbeitsordner (Briefings, Konzepte) – nicht veröffentlichen
+/qv–27–grafik–zurich/
